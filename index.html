@@ -85,18 +85,23 @@
     padding:28px 18px 60px;
   }
   #app::before{
-    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:
-      radial-gradient(1.5px 1.5px at 10% 22%, rgba(255,255,255,0.8) 0, transparent 100%),
-      radial-gradient(1px 1px at 33% 68%, rgba(240,182,76,0.8) 0, transparent 100%),
-      radial-gradient(1.5px 1.5px at 62% 12%, rgba(52,214,160,0.8) 0, transparent 100%),
-      radial-gradient(1px 1px at 78% 48%, rgba(255,255,255,0.7) 0, transparent 100%),
-      radial-gradient(1.5px 1.5px at 92% 78%, rgba(74,168,255,0.8) 0, transparent 100%),
-      radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.6) 0, transparent 100%),
-      radial-gradient(1px 1px at 48% 38%, rgba(240,182,76,0.6) 0, transparent 100%);
-    animation:star-twinkle 3.8s ease-in-out infinite;
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.55;
+    background-image:
+      repeating-linear-gradient(180deg, transparent 0 18px, rgba(52,214,160,0.55) 18px 21px, transparent 21px 140px),
+      repeating-linear-gradient(180deg, transparent 0 30px, rgba(240,182,76,0.45) 30px 33px, transparent 33px 190px),
+      repeating-linear-gradient(180deg, transparent 0 12px, rgba(74,168,255,0.5) 12px 14px, transparent 14px 160px),
+      repeating-linear-gradient(180deg, transparent 0 24px, rgba(185,196,208,0.4) 24px 26px, transparent 26px 210px),
+      repeating-linear-gradient(180deg, transparent 0 16px, rgba(52,214,160,0.35) 16px 18px, transparent 18px 175px),
+      repeating-linear-gradient(180deg, transparent 0 20px, rgba(240,182,76,0.35) 20px 22px, transparent 22px 150px);
+    background-size:1px 140px,1px 190px,1px 160px,1px 210px,1px 175px,1px 150px;
+    background-position:6% 0,18% 0,34% 0,52% 0,71% 0,88% 0;
+    background-repeat:repeat-y;
+    animation:data-rain 5s linear infinite;
   }
-  @keyframes star-twinkle{0%,100%{opacity:0.35;}50%{opacity:1;}}
+  @keyframes data-rain{
+    from{background-position:6% 0,18% 0,34% 0,52% 0,71% 0,88% 0;}
+    to{background-position:6% 140px,18% 190px,34% 160px,52% 210px,71% 175px,88% 150px;}
+  }
   .wrap{max-width:1180px;margin:0 auto;}
 
   @keyframes panel-in{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
@@ -188,8 +193,8 @@
   .fab-menu{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
   .fab-trigger{width:50px;height:50px;border-radius:50%;background:linear-gradient(180deg,var(--bg-panel),var(--bg-panel-2));border:1px solid var(--gold-dim);color:var(--gold);font-size:20px;cursor:pointer;box-shadow:0 4px 18px rgba(0,0,0,0.5),0 0 14px rgba(240,182,76,0.25);transition:transform .15s ease,border-color .15s ease;}
   .fab-trigger:hover{border-color:var(--gold);transform:scale(1.05);}
-  .fab-menu-grid{display:none;grid-template-columns:repeat(2,minmax(120px,1fr));gap:8px;background:var(--bg-panel);border:1px solid var(--border-bright);padding:12px;border-radius:4px;box-shadow:0 8px 28px rgba(0,0,0,0.55);max-width:300px;}
-  .fab-menu.open .fab-menu-grid{display:grid;}
+  .fab-menu-grid{display:none;flex-direction:column;gap:8px;background:var(--bg-panel);border:1px solid var(--border-bright);padding:12px;border-radius:4px;box-shadow:0 8px 28px rgba(0,0,0,0.55);width:200px;}
+  .fab-menu.open .fab-menu-grid{display:flex;}
   .fab-item{padding:10px 8px;font-size:12px;font-weight:600;text-align:center;background:var(--bg-panel-2);border:1px solid var(--border);color:var(--text);border-radius:2px;}
   .fab-item.ultra{border-color:var(--cyan-dim);}
   .fab-item.poke{border-color:var(--orange-dim);}
@@ -197,10 +202,10 @@
   .fab-item.purple{border-color:var(--purple-dim);}
   .fab-item.villain-panel{border-color:var(--crimson-dim);}
   .fab-item.active{background:var(--gold-dim);color:var(--gold);border-color:var(--gold);}
-  @media (max-width:600px){.fab-menu-grid{grid-template-columns:repeat(2,minmax(100px,1fr));max-width:240px;}.fab-trigger{width:46px;height:46px;}}
+  @media (max-width:600px){.fab-menu-grid{width:170px;}.fab-trigger{width:46px;height:46px;}}
   .header-left{flex:1;min-width:220px;}
   .header-sub{font-family:var(--mono);font-size:12px;color:var(--text-dim);margin-top:6px;}
-  .points-block{text-align:right;}
+  .points-block{text-align:right;margin-left:auto;}
   .points-num{font-family:var(--mono);font-weight:700;font-size:40px;color:var(--gold);text-shadow:0 0 18px rgba(240,182,76,0.35);line-height:1;animation:points-idle-glow 3.4s ease-in-out infinite;}
   @keyframes points-idle-glow{0%,100%{text-shadow:0 0 14px rgba(240,182,76,0.3);}50%{text-shadow:0 0 22px rgba(240,182,76,0.55);}}
   .points-label{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
@@ -1777,6 +1782,21 @@
   }
 
   const SHOP_CATEGORIES = ["装备道具","技能卷轴","特殊道具","回复道具","战斗道具","技能学习器","携带物"];
+
+  const HELD_ITEM_REF = `参考库(优先从这里面选,数量不够再仿照这个风格补充创作少量新的,风格必须是奥特宇宙的武装/器官/头镖/徽章与宝可梦携带物结合):
+【杰顿器官】效果:极大提升火属性招式威力,35%概率受到攻击时自动触发【杰顿屏障】抵挡部分伤害。专属技能:伪·一兆度火球——释放蕴含恐怖高温的巨大暗红色火球,威力巨大但消耗亦巨大。
+【奈克赛斯武装】效果:体力低于50%时有几率展开【美塔领域】,领域内缓慢吸收对手体力恢复自身并削弱对手特殊技能效果。专属技能:风暴之剑——凝聚光粒子形成巨大剑刃进行斩击。
+【赛文头镖】效果:大幅提升切割类招式的锋利度与威力,飞行系宝可梦佩戴额外提升飞行速度与机动性。专属技能:幻化头镖——释放能量头镖进行远程攻击或回旋切割。
+【泰罗燃烧之证】效果:大幅提升火/格斗属性招式暴击率,连续命中同一目标时伤害递增。专属技能:真·流星拳——以极速连续重拳轰击目标,拳拳叠加灼热伤害。
+【雷欧狮子爪】效果:地面系宝可梦佩戴时攻击与速度同时提升,生命值越低招式威力越高。专属技能:极速十字光弹——蓄力后以狮子爪形态发射十字交叉光弹。
+【梦比优斯凤凰之羽】效果:提升妖精/飞行系招式的命中与治愈效果,队友受到重创时小概率触发"回光返照"追加一次攻击。专属技能:凤凰螺旋破坏光线——化身火凤凰姿态冲撞目标,兼具穿透与灼烧。
+【初代光线环】效果:光/电系招式必定附加轻微麻痹,佩戴者在场时我方异常状态几率降低。专属技能:八丈光线——双手交叉蓄力后释放M字形强光射线。
+【佐菲队长徽章】效果:全队属性相克判定更有利,作为队长出战时小幅提升全队命中与闪避。专属技能:M87光线——召唤宇宙射线进行贯穿打击。
+【盖亚大地臂铠】效果:地面/岩石系招式威力提升,且免疫地震类招式的自伤效果。专属技能:维纳斯之光——汇聚大地能量形成光环状冲击波。
+【戴拿卡莱比梦石】效果:每场战斗开始时随机变换当前携带物的附加属性加成,增加策略变数。专属技能:索拉杰特光线——闪烁态专属,以光速突进附带强力冲击。
+每件携带物的desc字段请把"效果"和"专属技能"两部分都概括进去(可以精简措辞,但两部分都要体现)。`;
+
+  const SPECIAL_ITEM_REF = `"特殊道具"参考方向(账号级/全队级增益道具,不是单只宝可梦的消耗品):全队·学习装置(全队共享经验加成)、闪耀护符(提升遇到稀有/异色宝可梦概率)、经验护符(额外提升经验获取)、自定义第一阶段宝可梦券(可兑换任意一只未进化宝可梦)这类。高价位的"特殊道具"优先往这个方向设计,而不是单纯的小道具。`;
   function renderShopSections(){
     if(!state.shopOffers.length) return '<div class="poke-empty">〔 点击"刷新商店"生成AI商品 〕</div>';
     const cats = SHOP_CATEGORIES;
@@ -1803,8 +1823,8 @@
   }
 
   function renderLotteryResult(r){
-    const typeLabel = {item:"道具", skill:"技能", pokemon:"宝可梦", points:"积分", nothing:"未中奖"}[r.type] || r.type;
-    const epic = r.rarity==="史诗" || r.rarity==="传说";
+    const typeLabel = {item:"道具", skill:"技能", techLearner:"技能学习器", heldItem:"携带物", points:"积分"}[r.type] || r.type;
+    const epic = r.rarity==="A" || r.rarity==="S";
     return `
       <div class="lottery-result ${epic?'epic':''}">
         <div class="lr-type">${typeLabel}${r.rarity?(' · '+r.rarity):''}</div>
@@ -2558,11 +2578,11 @@ ${recentChatPreferences(6)}
 请生成49件适合当前宿主购买的商店商品,必须严格分成七类,每一类恰好7件,不多不少:
 - "装备道具":奥特侧的武装、能量结晶等
 - "技能卷轴":诺缇斯可学习的新技能,需附带一个段位tier(E/D/C/B/A/S/SS/SSS/禁术级之一)
-- "特殊道具":图鉴解锁、称号、稀有材料等特殊功能类物品
+- "特殊道具":图鉴解锁、称号、稀有材料等特殊功能类物品。${SPECIAL_ITEM_REF}
 - "回复道具":恢复宝可梦体力/状态异常的道具,如伤药、解毒药之类
 - "战斗道具":战斗中使用的辅助道具,如威力提升、命中提升类
 - "技能学习器":能教会队伍中一只宝可梦一个新招式的技能光盘/学习器,必须附带move字段(招式名)
-- "携带物":给宝可梦随身携带、持续生效的道具,如讲究头巾、进化石、札场之证之类
+- "携带物":给宝可梦随身携带、持续生效的奥特宇宙特色道具。${HELD_ITEM_REF}
 
 另外从这批商品里选出恰好1件最贴合宿主当前状态或最近偏好的商品,给它加上"recommend":true(其余都是false)。
 
@@ -2615,23 +2635,30 @@ ${recentChatPreferences(6)}
 宿主最近向系统表达过的偏好:
 ${recentChatPreferences(6)}
 
-本次抽奖模式:${mode==='blessing'?'祝福抽奖(高消耗,稀有度门槛更高,允许出现类似"破局关键"级别的传说奖励)':'普通抽奖(消耗较低,大多数是普通/稀有结果)'}
+本次抽奖模式:${mode==='blessing'?'祝福抽奖(高消耗,等级门槛更高,大多落在C~A,较大概率出现A,允许出现最高等级S)':'普通抽奖(消耗较低,大多数落在E~C)'}
 本次连抽次数:${n}
 
-请一次性生成${n}条抽奖结果,每条结果类型可以是:道具(item)、技能(skill)、宝可梦(pokemon)、积分奖励(points)、或未中奖(nothing);稀有度字段rarity为:普通/稀有/史诗/传说 之一。${mode==='blessing'?'祝福模式下稀有度应明显高于普通模式,较大概率出现"稀有"以上,允许出现"传说"。':'普通模式下大多数应是"普通"或"稀有"。'}
+请一次性生成${n}条抽奖结果,每条结果类型可以是:
+- "item"(道具):普通消耗/功能道具,等级越高越偏向账号级增益道具。${SPECIAL_ITEM_REF}
+- "skill"(技能):诺缇斯可学习的新技能
+- "techLearner"(技能学习器):教会队伍中一只宝可梦新招式的技能光盘,必须附带move字段(招式名)
+- "heldItem"(携带物):奥特宇宙特色携带物。${HELD_ITEM_REF}
+- "points"(积分奖励)
+
+等级字段rarity为:E/D/C/B/A/S 之一(S为最高等级,对应宿主自己的段位体系)。${mode==='blessing'?'祝福模式下等级应明显高于普通模式,较大概率出现A,允许出现S。':'普通模式下大多数应是E、D或C。'}heldItem类型只应在等级为A或S时出现,等级较低时不要生成heldItem。
 
 只返回一个JSON数组,不要包含任何其他文字、解释或Markdown代码块符号,严格遵循以下格式(数组长度必须等于${n}):
-[{"type":"item或skill或pokemon或points或nothing","name":"结果名称","rarity":"普通或稀有或史诗或传说","desc":"20字以内的播报描述","value":数字}]
+[{"type":"item或skill或techLearner或heldItem或points","name":"结果名称","rarity":"E或D或C或B或A或S","desc":"20字以内的播报描述","move":"仅techLearner需要,否则留空字符串","value":数字}]
 (value仅在type为points时代表获得的积分数量,其他类型填0)`;
       const imgBlocks2 = collectContextImages();
       const text = await callClaude([{ role: "user", content: imgBlocks2.length ? [...imgBlocks2, {type:"text", text: prompt}] : prompt }], null, 2400);
       let results = extractJSON(text);
       if(!Array.isArray(results)) results = [results];
-      // pity: 10连抽保底至少一个史诗+
+      // pity: 10连抽保底至少一个A以上
       if(n===10){
-        const hasHigh = results.some(r=>r.rarity==="史诗"||r.rarity==="传说");
+        const hasHigh = results.some(r=>r.rarity==="A"||r.rarity==="S");
         if(!hasHigh && results.length){
-          results[results.length-1] = {...results[results.length-1], rarity:"史诗", desc:(results[results.length-1].desc||"")+"(保底触发)"};
+          results[results.length-1] = {...results[results.length-1], rarity:"A", desc:(results[results.length-1].desc||"")+"(保底触发)"};
         }
       }
       state.points -= totalCost;
@@ -2640,7 +2667,7 @@ ${recentChatPreferences(6)}
       addLog("抽奖", `${mode==='blessing'?'祝福':'普通'}抽奖${n}连,消耗${totalCost}积分`);
       bumpAffinity(2);
       persist("〔 叮!抽奖结果已揭晓 〕");
-      const hasEpic = results.some(r=>r.rarity==="史诗"||r.rarity==="传说");
+      const hasEpic = results.some(r=>r.rarity==="A"||r.rarity==="S");
       burstParticlesAt(originX, originY, hasEpic ? 30 : 14);
       if(hasEpic) triggerScreenFlash("rgba(240,182,76,0.4)");
     }catch(e){ console.error("[AI抽奖]", e); showToast("〔 抽奖失败:" + (e && e.message ? e.message : "未知错误") + " 〕"); }
@@ -2658,7 +2685,7 @@ ${recentChatPreferences(6)}
 
 请严格结合下方的剧情摘要与宿主状态来对话,涉及到的角色、地点、势力、法则/规则设定等都要与摘要保持一致,不要编造与摘要相悖的剧情或角色关系;摘要中没提到的细节可以合理发挥,但不能和已知设定冲突。
 ${hostContextBlock()}
-宿主可能会告诉你他想要什么类型的道具、技能或宝可梦,请记住并回应这些偏好,这些内容之后会被系统的商店与抽奖模块参考。回复请简洁自然,控制在120字以内,不要输出JSON或代码块。`;
+宿主可能会告诉你他想要什么类型的道具、技能或宝可梦,请记住并回应这些偏好,这些内容之后会被系统的商店与抽奖模块参考。回复请简洁自然,控制在120字以内,不要输出JSON或代码块。语气里可以适当用颜文字表达情绪(比如 (｡•̀ᴗ-)✧、(￣▽￣)、(╯°□°)╯、(¬_¬)这种),但绝对不要使用emoji表情符号(比如🔥⚡👍😤这类)。`;
       const messages = state.chatHistory.map(m=>({role:m.role, content:m.content}));
       const imgBlocks = collectContextImages();
       if(imgBlocks.length && messages.length){
@@ -2681,9 +2708,12 @@ ${hostContextBlock()}
   function applyLotteryResult(result){
     if(!result || !result.type) return;
     if(result.type === "skill"){
-      state.skills.push({name:result.name, tier: result.rarity==="传说"?"SSS":(result.rarity==="史诗"?"SS":"D"), proficiency:10});
-    }else if(result.type === "pokemon"){
-      state.team.push({name:result.name, level:5, types:[], ability:"", hidden:"", moves:"", item:""});
+      const validTiers = ["E","D","C","B","A","S"];
+      state.skills.push({name:result.name, tier: validTiers.includes(result.rarity)?result.rarity:"E", proficiency:10});
+    }else if(result.type === "techLearner"){
+      addBagItemByName(result.name, result.desc, 1, "技能学习器", result.move || result.name);
+    }else if(result.type === "heldItem"){
+      addBagItemByName(result.name, result.desc, 1, "携带物");
     }else if(result.type === "points"){
       state.points += (result.value||0);
     }else if(result.type === "item"){
